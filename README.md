@@ -71,3 +71,6 @@ go test ./... -race            # or: bash scripts/test.sh
 
 ## Deploy
 `Dockerfile` (multi-stage, distroless, `EXPOSE 8080`, respects `PORT`) + `render.yaml` (health check `/healthz`) -> deploy to Render/Fly.io. Set the frontend's `VITE_API_BASE_URL` to the resulting URL.
+
+## Documentation
+See **[DOCS.md](./DOCS.md)** for the full technical documentation — architecture, domain model, concurrency model, REST API reference, testing, and deployment.
