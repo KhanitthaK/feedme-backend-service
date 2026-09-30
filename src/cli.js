@@ -78,7 +78,11 @@ async function demo(controller) {
   controller.addBot();
   controller.removeBot(); // Returns the first normal order to its original queue position.
   printState(controller);
-  await delay(20_100);
+  const deadline = Date.now() + 60_000;
+  while (controller.getState().complete.length < 4) {
+    if (Date.now() > deadline) throw new Error('Demo timed out before all orders completed');
+    await delay(50);
+  }
   printState(controller);
   controller.shutdown();
 }
