@@ -1,0 +1,33 @@
+[01:07:58] Starting order controller demo
+[01:07:58] NORMAL order #1 entered PENDING
+[01:07:58] NORMAL order #2 entered PENDING
+[01:07:58] VIP order #3 entered PENDING
+[01:07:58] VIP order #4 entered PENDING
+[01:07:58] PENDING: #3 VIP, #4 VIP, #1 NORMAL, #2 NORMAL
+[01:07:58] PROCESSING: (none)
+[01:07:58] COMPLETE: (none)
+[01:07:58] BOTS: (none)
+[01:07:58] Bot #1 created
+[01:07:58] Bot #1 started VIP order #3
+[01:07:58] Bot #2 created
+[01:07:58] Bot #2 started VIP order #4
+[01:07:58] Bot #3 created
+[01:07:58] Bot #3 started NORMAL order #1
+[01:07:58] NORMAL order #1 returned to PENDING from bot #3
+[01:07:58] Bot #3 removed
+[01:07:58] PENDING: #1 NORMAL, #2 NORMAL
+[01:07:58] PROCESSING: bot #1: #3 VIP, bot #2: #4 VIP
+[01:07:58] COMPLETE: (none)
+[01:07:58] BOTS: #1 BUSY, #2 BUSY
+[01:08:08] Bot #1 completed VIP order #3 after 10 seconds
+[01:08:08] Bot #1 started NORMAL order #1
+[01:08:08] Bot #2 completed VIP order #4 after 10 seconds
+[01:08:08] Bot #2 started NORMAL order #2
+[01:08:18] Bot #1 completed NORMAL order #1 after 10 seconds
+[01:08:18] Bot #1 is IDLE
+[01:08:18] Bot #2 completed NORMAL order #2 after 10 seconds
+[01:08:18] Bot #2 is IDLE
+[01:08:18] PENDING: (none)
+[01:08:18] PROCESSING: (none)
+[01:08:18] COMPLETE: #3 VIP, #4 VIP, #1 NORMAL, #2 NORMAL
+[01:08:18] BOTS: #1 IDLE, #2 IDLE

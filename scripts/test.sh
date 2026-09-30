@@ -1,9 +1,9 @@
-#!/bin/bash
-set -e
-
-# Run from repo root (CI invokes ./scripts/test.sh from root).
+#!/usr/bin/env bash
+set -euo pipefail
 cd "$(dirname "$0")/.."
-
-echo "Running unit tests..."
-go test ./... -v
-echo "Unit tests completed"
+npm test
+if [[ -f go.mod ]]; then
+  export GOCACHE="${GOCACHE:-${TMPDIR:-/tmp}/feedme-go-build-cache}"
+  export GOMODCACHE="${GOMODCACHE:-${TMPDIR:-/tmp}/feedme-go-mod-cache}"
+  go test ./...
+fi

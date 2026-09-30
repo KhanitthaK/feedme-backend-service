@@ -2,10 +2,12 @@
 
 Backend for the **McDonald's cooking-bot order controller** (FeedMe SDE take-home).
 
+A Node.js CLI implementation is also available in [`NODE_IMPLEMENTATION.md`](NODE_IMPLEMENTATION.md). The verification scripts run its demo and test/build both implementations. The Go CLI and HTTP server remain available through their existing commands.
+
 Go 1.23, **clean architecture**, in-memory (no persistence). One shared domain core drives **two delivery adapters**:
 
 - **HTTP REST API** — consumed by [`feedme-frontend-service`](https://github.com/KhanitthaK/feedme-frontend-service)
-- **CLI** — interactive REPL + a non-interactive `--scenario` mode used by CI to produce `scripts/result.txt`
+- **CLI** — interactive REPL + a non-interactive `--scenario` mode
 
 ## Requirements covered
 | # | Requirement | Where |
@@ -57,17 +59,21 @@ go run ./cmd/server            # http://localhost:8080  (PORT to override)
 # Interactive CLI
 go run ./cmd/cli               # commands: normal | vip | +bot | -bot | status | help | quit
 
-# Scenario (what CI runs) -> prints timestamped log to result.txt
-bash scripts/build.sh && bash scripts/run.sh && cat scripts/result.txt
+# Go scenario
+go run ./cmd/cli --scenario
+
+# Node.js demo used by CI -> writes timestamped log to scripts/result.txt
+bash scripts/build.sh && bash scripts/run.sh
 ```
 
 ## Test
 ```bash
-go test ./... -race            # or: bash scripts/test.sh
+go test ./... -race
+bash scripts/test.sh           # Node and Go tests
 ```
 
 ## CI / assignment
-`.github/workflows/backend-verify-result.yaml` runs `scripts/test.sh -> build.sh -> run.sh` and asserts `scripts/result.txt` is non-empty and contains `HH:MM:SS` timestamps. `run.sh` regenerates `result.txt` on every run (it is gitignored).
+`.github/workflows/backend-verify-result.yaml` runs `scripts/test.sh -> build.sh -> run.sh` and asserts `scripts/result.txt` is non-empty and contains `HH:MM:SS` timestamps. `run.sh` regenerates the Node.js demo output on every run.
 
 ## Deploy
 `Dockerfile` (multi-stage, distroless, `EXPOSE 8080`, respects `PORT`) + `render.yaml` (health check `/healthz`) -> deploy to Render/Fly.io. Set the frontend's `VITE_API_BASE_URL` to the resulting URL.

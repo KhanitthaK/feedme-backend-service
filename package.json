@@ -1,0 +1,13 @@
+{
+  "name": "feedme-order-controller",
+  "version": "1.0.0",
+  "private": true,
+  "description": "In-memory cooking bot order controller",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test",
+    "build": "node --check src/order-controller.js && node --check src/cli.js",
+    "start": "node src/cli.js",
+    "demo": "node src/cli.js --demo"
+  }
+}
